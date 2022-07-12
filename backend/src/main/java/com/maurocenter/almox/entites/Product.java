@@ -5,9 +5,12 @@ import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+<<<<<<< HEAD
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+=======
+>>>>>>> 85885213f525c4e5a81d7581906f7cab8c3416c1
 import javax.persistence.Table;
 
 @Entity
