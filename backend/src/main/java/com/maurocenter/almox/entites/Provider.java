@@ -21,6 +21,8 @@ public class Provider implements Serializable {
 	private String fantasyName;
 	private String email;
 
+	private Address address;
+
 	public Provider() {
 	}
 
@@ -62,6 +64,14 @@ public class Provider implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override
