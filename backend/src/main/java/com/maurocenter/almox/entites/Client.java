@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +21,9 @@ public class Client implements Serializable {
 	private String corporationName;
 	private String cnpj;
 	private String email;
+
+	@OneToOne(mappedBy = "client")
+	private Address address;
 
 	public Client() {
 	}
@@ -62,6 +66,14 @@ public class Client implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override
