@@ -22,12 +22,15 @@ public class Address implements Serializable {
 	private Integer number;
 	private String district;
 	private String city;
-	private char states;
+	private String state;
+	private String cep;
 
 	@OneToOne
 	@JoinColumn(name = "id_client")
 	private Client client;
 
+	@OneToOne
+	@JoinColumn(name = "id_provider")
 	private Provider provider;
 
 	public Address() {
@@ -73,12 +76,20 @@ public class Address implements Serializable {
 		this.city = city;
 	}
 
-	public char getStates() {
-		return states;
+	public String getState() {
+		return state;
 	}
 
-	public void setStates(char states) {
-		this.states = states;
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public Client getClient() {
