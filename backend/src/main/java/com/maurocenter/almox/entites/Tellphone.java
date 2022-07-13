@@ -22,14 +22,20 @@ public class Tellphone implements Serializable {
 	private TypeTell type;
 	private String number;
 
+	private Client client;
+
+	private Provider provider;
+
 	public Tellphone() {
 	}
 
-	public Tellphone(Long id, TypeTell type, String number) {
+	public Tellphone(Long id, TypeTell type, String number, Client client, Provider provider) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.number = number;
+		this.client = client;
+		this.provider = provider;
 	}
 
 	public Long getId() {
@@ -54,6 +60,22 @@ public class Tellphone implements Serializable {
 
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	@Override

@@ -1,23 +1,12 @@
-package com.maurocenter.almox.entites;
+package com.maurocenter.almox.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.maurocenter.almox.entites.Address;
 
-@Entity
-@Table(name = "tb_address")
-public class Address implements Serializable {
+public class AddressDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private Integer number;
@@ -26,15 +15,35 @@ public class Address implements Serializable {
 	private String state;
 	private String cep;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "client_id")
-	private Client client;
+	private ClientDTO client;
 
-	@OneToOne
-	@JoinColumn(name = "provider_id")
-	private Provider provider;
+	private ProviderDTO provider;
 
-	public Address() {
+	public AddressDTO() {
+	}
+
+	public AddressDTO(Long id, String name, Integer number, String district, String city, String state, String cep,
+			ClientDTO client, ProviderDTO provider) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.number = number;
+		this.district = district;
+		this.city = city;
+		this.state = state;
+		this.cep = cep;
+		this.client = client;
+		this.provider = provider;
+	}
+
+	public AddressDTO(Address entity) {
+		id = entity.getId();
+		name = entity.getName();
+		number = entity.getNumber();
+		district = entity.getDistrict();
+		city = entity.getCity();
+		state = entity.getState();
+		cep = entity.getCep();
 	}
 
 	public Long getId() {
@@ -93,20 +102,19 @@ public class Address implements Serializable {
 		this.cep = cep;
 	}
 
-	public Client getClient() {
+	public ClientDTO getClient() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(ClientDTO client) {
 		this.client = client;
 	}
 
-	public Provider getProvider() {
+	public ProviderDTO getProvider() {
 		return provider;
 	}
 
-	public void setProvider(Provider provider) {
+	public void setProvider(ProviderDTO provider) {
 		this.provider = provider;
 	}
-
 }

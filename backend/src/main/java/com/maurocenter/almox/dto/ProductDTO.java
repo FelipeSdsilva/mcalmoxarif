@@ -1,22 +1,13 @@
-package com.maurocenter.almox.entites;
+package com.maurocenter.almox.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.maurocenter.almox.entites.Product;
 
-@Entity
-@Table(name = "tb_product")
-public class Product implements Serializable {
+public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String barcode;
@@ -24,13 +15,13 @@ public class Product implements Serializable {
 	private Double price;
 	private Integer quantity;
 
-	private Provider provider;
+	private ProviderDTO provider;
 
-	public Product() {
+	public ProductDTO() {
 	}
 
-	public Product(Long id, String name, String barcode, Instant validaty, Double price, Integer quantity,
-			Provider provider) {
+	public ProductDTO(Long id, String name, String barcode, Instant validaty, Double price, Integer quantity,
+			ProviderDTO provider) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,6 +30,15 @@ public class Product implements Serializable {
 		this.price = price;
 		this.quantity = quantity;
 		this.provider = provider;
+	}
+
+	public ProductDTO(Product entity) {
+		id = entity.getId();
+		name = entity.getName();
+		barcode = entity.getBarcode();
+		validaty = entity.getValidaty();
+		price = entity.getPrice();
+		quantity = entity.getQuantity();
 	}
 
 	public Long getId() {
@@ -89,33 +89,12 @@ public class Product implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public Provider getProvider() {
+	public ProviderDTO getProvider() {
 		return provider;
 	}
 
-	public void setProvider(Provider provider) {
+	public void setProvider(ProviderDTO provider) {
 		this.provider = provider;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-		return Objects.equals(id, other.id);
 	}
 
 }

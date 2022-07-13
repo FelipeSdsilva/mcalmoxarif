@@ -1,39 +1,28 @@
-package com.maurocenter.almox.entites;
+package com.maurocenter.almox.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.maurocenter.almox.entites.enums.OrderStatus;
 
-@Entity
-@Table(name = "tb_order")
-public class Order implements Serializable {
+public class OrderDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
 	private Instant date;
 	private OrderStatus status;
 
-	private Client client;
+	private ClientDTO client;
 
-	List<OrderItem> items = new ArrayList<>();
+	List<OrderItemDTO> items = new ArrayList<>();
 
-	public Order() {
+	public OrderDTO() {
 	}
 
-	public Order(Long id, Instant date, OrderStatus status, Client client) {
+	public OrderDTO(Long id, Instant date, OrderStatus status, ClientDTO client) {
+		super();
 		this.id = id;
 		this.date = date;
 		this.status = status;
@@ -64,12 +53,16 @@ public class Order implements Serializable {
 		this.status = status;
 	}
 
-	public Client getClient() {
+	public ClientDTO getClient() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(ClientDTO client) {
 		this.client = client;
+	}
+
+	public List<OrderItemDTO> getItems() {
+		return items;
 	}
 
 }

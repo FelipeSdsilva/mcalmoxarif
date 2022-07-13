@@ -2,8 +2,11 @@ package com.maurocenter.almox.entites;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,18 +25,21 @@ public class Client implements Serializable {
 	private String cnpj;
 	private String email;
 
-	@OneToOne(mappedBy = "client")
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "client")
 	private Address address;
+	
+	Set<Order> orders = 
 
 	public Client() {
 	}
 
-	public Client(Long id, String corporationName, String cnpj, String email) {
+	public Client(Long id, String corporationName, String cnpj, String email, Address address) {
 		super();
 		this.id = id;
 		this.corporationName = corporationName;
 		this.cnpj = cnpj;
 		this.email = email;
+		this.address = address;
 	}
 
 	public Long getId() {
