@@ -1,43 +1,47 @@
-package com.maurocenter.almox.entites;
+package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.maurocenter.almox.entities.enums.TypePacking;
+
 @Entity
-@Table(name = "tb_product")
+@Table(name ="tb_product")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	
+	private String productName;
 	private String barcode;
-	private Instant validaty;
+	private LocalDate dateValidity;
 	private Double price;
-	private Integer quantity;
+	private TypePacking paking;
 
+	@OneToMany(mappedBy = "products")
 	private Provider provider;
 
 	public Product() {
 	}
 
-	public Product(Long id, String name, String barcode, Instant validaty, Double price, Integer quantity,
-			Provider provider) {
-		super();
+	public Product(Long id, String productName, String barcode, LocalDate dateValidity, Double price,
+			TypePacking paking, Provider provider) {
 		this.id = id;
-		this.name = name;
+		this.productName = productName;
 		this.barcode = barcode;
-		this.validaty = validaty;
+		this.dateValidity = dateValidity;
 		this.price = price;
-		this.quantity = quantity;
+		this.paking = paking;
 		this.provider = provider;
 	}
 
@@ -49,12 +53,12 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getBarcode() {
@@ -65,12 +69,12 @@ public class Product implements Serializable {
 		this.barcode = barcode;
 	}
 
-	public Instant getValidaty() {
-		return validaty;
+	public LocalDate getDateValidity() {
+		return dateValidity;
 	}
 
-	public void setValidaty(Instant validaty) {
-		this.validaty = validaty;
+	public void setDateValidity(LocalDate dateValidity) {
+		this.dateValidity = dateValidity;
 	}
 
 	public Double getPrice() {
@@ -81,12 +85,12 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
+	public TypePacking getPaking() {
+		return paking;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setPaking(TypePacking paking) {
+		this.paking = paking;
 	}
 
 	public Provider getProvider() {
@@ -95,10 +99,6 @@ public class Product implements Serializable {
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override

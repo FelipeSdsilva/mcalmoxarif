@@ -1,14 +1,13 @@
-package com.maurocenter.almox.entites;
+package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,22 +18,30 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String nameStreet;
 	private Integer number;
 	private String district;
 	private String city;
 	private String state;
 	private String cep;
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "client_id")
+	
+	@ManyToMany(mappedBy = "addresses")
 	private Client client;
-
-	@OneToOne
-	@JoinColumn(name = "provider_id")
+	
+	@ManyToMany(mappedBy = "addresses")
 	private Provider provider;
 
 	public Address() {
+	}
+
+	public Address(Long id, String nameStreet, Integer number, String district, String city, String state, String cep) {
+		this.id = id;
+		this.nameStreet = nameStreet;
+		this.number = number;
+		this.district = district;
+		this.city = city;
+		this.state = state;
+		this.cep = cep;
 	}
 
 	public Long getId() {
@@ -45,12 +52,12 @@ public class Address implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNameStreet() {
+		return nameStreet;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNameStreet(String nameStreet) {
+		this.nameStreet = nameStreet;
 	}
 
 	public Integer getNumber() {
@@ -93,20 +100,21 @@ public class Address implements Serializable {
 		this.cep = cep;
 	}
 
-	public Client getClient() {
-		return client;
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public Provider getProvider() {
-		return provider;
-	}
-
-	public void setProvider(Provider provider) {
-		this.provider = provider;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

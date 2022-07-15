@@ -1,4 +1,4 @@
-package com.maurocenter.almox.entites;
+package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,35 +7,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.maurocenter.almox.entites.enums.TypeTell;
+import com.maurocenter.almox.entities.enums.TellType;
 
 @Entity
 @Table(name = "tb_tellphone")
-public class Tellphone implements Serializable {
+public class Tellphone implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private TypeTell type;
 	private String number;
-
+	private TellType tellType;
+	
+	@ManyToMany(mappedBy = "phones")
 	private Client client;
 
+	@ManyToMany(mappedBy = "phones")
 	private Provider provider;
-
+	
 	public Tellphone() {
 	}
 
-	public Tellphone(Long id, TypeTell type, String number, Client client, Provider provider) {
-		super();
+	public Tellphone(Long id, String number, TellType tellType) {
 		this.id = id;
-		this.type = type;
 		this.number = number;
-		this.client = client;
-		this.provider = provider;
+		this.tellType = tellType;
 	}
 
 	public Long getId() {
@@ -46,20 +46,20 @@ public class Tellphone implements Serializable {
 		this.id = id;
 	}
 
-	public TypeTell getType() {
-		return type;
-	}
-
-	public void setType(TypeTell type) {
-		this.type = type;
-	}
-
 	public String getNumber() {
 		return number;
 	}
 
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	public TellType getTellType() {
+		return tellType;
+	}
+
+	public void setTellType(TellType tellType) {
+		this.tellType = tellType;
 	}
 
 	public Client getClient() {
@@ -94,5 +94,4 @@ public class Tellphone implements Serializable {
 		Tellphone other = (Tellphone) obj;
 		return Objects.equals(id, other.id);
 	}
-
 }

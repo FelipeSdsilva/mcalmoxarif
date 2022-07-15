@@ -1,4 +1,4 @@
-package com.maurocenter.almox.entites.enums;
+package com.maurocenter.almox.entities.enums;
 
 public enum OrderStatus {
 	PROCESSANDO,
