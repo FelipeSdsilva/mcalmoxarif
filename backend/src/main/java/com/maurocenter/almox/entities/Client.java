@@ -40,7 +40,13 @@ public class Client implements Serializable {
 	joinColumns = @JoinColumn(name = "client_id"),
 	inverseJoinColumns = @JoinColumn(name="phone_id"))
 	private Set<Tellphone> phones = new HashSet<>();
-
+	
+	@ManyToMany()
+	@JoinTable(name = "tb_order_client",
+	joinColumns = @JoinColumn(name = "client_id"),
+	inverseJoinColumns = @JoinColumn(name="order_id"))
+	private Set<Order> orders = new HashSet<>();
+	
 	public Client() {
 	}
 
