@@ -1,9 +1,9 @@
 package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,25 +28,19 @@ public class Client implements Serializable {
 	private String document;
 	private String email;
 	private ClientType type;
+
+	@ManyToMany
+	@JoinTable(name = "tb_address_client",
+	joinColumns = @JoinColumn(name = "client_id"),
+	inverseJoinColumns = @JoinColumn(name="address_id"))
+	private Set<Address> addresses = new HashSet<>();
 	
 	@ManyToMany
-	@JoinTable(name = "tb_client_address", 
-	joinColumns = @JoinColumn(name = "localization_id"),
-	inverseJoinColumns = {
-			@JoinColumn(name = "client_id"),
-			@JoinColumn(name = "address_id")
-	})
-	private List<Address> addresses = new ArrayList<>();
-	
-	@ManyToMany
-	@JoinTable(name = "tb_provider_phone", 
-	joinColumns = @JoinColumn(name = "contaticlist_id"),
-	inverseJoinColumns = {
-			@JoinColumn(name = "client_id"),
-			@JoinColumn(name = "tellphone_id")
-	})
-	private List<Tellphone> phones = new ArrayList<>();
-	
+	@JoinTable(name = "tb_phone_client",
+	joinColumns = @JoinColumn(name = "client_id"),
+	inverseJoinColumns = @JoinColumn(name="phone_id"))
+	private Set<Tellphone> phones = new HashSet<>();
+
 	public Client() {
 	}
 

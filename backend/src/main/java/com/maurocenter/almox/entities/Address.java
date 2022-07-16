@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,12 +24,6 @@ public class Address implements Serializable {
 	private String state;
 	private String cep;
 	
-	@ManyToMany(mappedBy = "addresses")
-	private Client client;
-	
-	@ManyToMany(mappedBy = "addresses")
-	private Provider provider;
-
 	public Address() {
 	}
 

@@ -8,41 +8,38 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.maurocenter.almox.entities.enums.TypePacking;
 
 @Entity
-@Table(name ="tb_product")
+@Table(name = "tb_product")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String productName;
 	private String barcode;
 	private LocalDate dateValidity;
 	private Double price;
 	private TypePacking paking;
 
-	@OneToMany(mappedBy = "products")
-	private Provider provider;
 
 	public Product() {
 	}
 
 	public Product(Long id, String productName, String barcode, LocalDate dateValidity, Double price,
-			TypePacking paking, Provider provider) {
+			TypePacking paking) {
 		this.id = id;
 		this.productName = productName;
 		this.barcode = barcode;
 		this.dateValidity = dateValidity;
 		this.price = price;
 		this.paking = paking;
-		this.provider = provider;
+
 	}
 
 	public Long getId() {
@@ -93,13 +90,6 @@ public class Product implements Serializable {
 		this.paking = paking;
 	}
 
-	public Provider getProvider() {
-		return provider;
-	}
-
-	public void setProvider(Provider provider) {
-		this.provider = provider;
-	}
 
 	@Override
 	public int hashCode() {

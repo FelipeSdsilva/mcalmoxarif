@@ -1,9 +1,9 @@
 package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,19 +27,13 @@ public class Provider implements Serializable {
 	private String socialRegister;
 	private String email;
 
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private List<Product> products = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "tb_address_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
+	private Set<Address> addresses = new HashSet<>();
 
 	@ManyToMany
-	@JoinTable(name = "tb_provider_address", joinColumns = @JoinColumn(name = "localization_id"), inverseJoinColumns = {
-			@JoinColumn(name = "provider_id"), @JoinColumn(name = "address_id") })
-	private List<Address> addresses = new ArrayList<>();
-
-	@ManyToMany
-	@JoinTable(name = "tb_provider_phone", joinColumns = @JoinColumn(name = "contaticlist_id"), inverseJoinColumns = {
-			@JoinColumn(name = "provider_id"), @JoinColumn(name = "tellphone_id") })
-	private List<Tellphone> phones = new ArrayList<>();
+	@JoinTable(name = "tb_phone_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "phone_id"))
+	private Set<Tellphone> phones = new HashSet<>();
 
 	public Provider() {
 	}
@@ -94,15 +87,11 @@ public class Provider implements Serializable {
 		this.email = email;
 	}
 
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public List<Address> getAddresses() {
+	public Set<Address> getAddresses() {
 		return addresses;
 	}
 
-	public List<Tellphone> getPhones() {
+	public Set<Tellphone> getPhones() {
 		return phones;
 	}
 
