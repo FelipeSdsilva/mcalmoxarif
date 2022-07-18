@@ -2,12 +2,15 @@ package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.maurocenter.almox.entities.enums.TypePacking;
@@ -27,6 +30,8 @@ public class Product implements Serializable {
 	private Double price;
 	private TypePacking paking;
 
+	@OneToMany(mappedBy = "product")
+	private List<Provider> providers = new ArrayList<>();
 
 	public Product() {
 	}
@@ -90,6 +95,9 @@ public class Product implements Serializable {
 		this.paking = paking;
 	}
 
+	public List<Provider> getProviders() {
+		return providers;
+	}
 
 	@Override
 	public int hashCode() {
@@ -107,5 +115,4 @@ public class Product implements Serializable {
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
-
 }

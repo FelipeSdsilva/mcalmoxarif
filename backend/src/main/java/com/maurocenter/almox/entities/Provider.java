@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,24 +28,34 @@ public class Provider implements Serializable {
 	private String socialRegister;
 	private String email;
 
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
+
 	@ManyToMany
-	@JoinTable(name = "tb_address_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
+	@JoinTable(name = "tb_address_provider",
+	joinColumns = @JoinColumn(name = "provider_id"),
+	inverseJoinColumns = @JoinColumn(name = "address_id"))
 	private Set<Address> addresses = new HashSet<>();
 
 	@ManyToMany
-	@JoinTable(name = "tb_phone_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "phone_id"))
+	@JoinTable(name = "tb_phone_provider",
+	joinColumns = @JoinColumn(name = "provider_id"),
+	inverseJoinColumns = @JoinColumn(name = "phone_id"))
 	private Set<Tellphone> phones = new HashSet<>();
 
 	public Provider() {
 	}
 
-	public Provider(Long id, String corporateName, String fantasyName, String socialRegister, String email) {
+	public Provider(Long id, String corporateName, String fantasyName, String socialRegister, String email,
+			Product product) {
 		super();
 		this.id = id;
 		this.corporateName = corporateName;
 		this.fantasyName = fantasyName;
 		this.socialRegister = socialRegister;
 		this.email = email;
+		this.product = product;
 	}
 
 	public Long getId() {
@@ -85,6 +96,14 @@ public class Provider implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public Set<Address> getAddresses() {
