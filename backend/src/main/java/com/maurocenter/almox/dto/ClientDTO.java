@@ -1,15 +1,12 @@
 package com.maurocenter.almox.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.maurocenter.almox.entities.Address;
 import com.maurocenter.almox.entities.Client;
-import com.maurocenter.almox.entities.Order;
-import com.maurocenter.almox.entities.Tellphone;
 import com.maurocenter.almox.entities.enums.ClientType;
-
 
 public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,11 +17,11 @@ public class ClientDTO implements Serializable {
 	private String email;
 	private ClientType type;
 
-	private List<AddressDTO> addresses = new ArrayList<>();
+	private Set<AddressDTO> addresses = new HashSet<>();
 
-	private List<TellphoneDTO> phones = new ArrayList<>();
+	private Set<TellphoneDTO> phones = new HashSet<>();
 
-	private List<OrderDTO> orders = new ArrayList<>();
+	private Set<OrderDTO> orders = new HashSet<>();
 
 	public ClientDTO() {
 	}
@@ -45,11 +42,11 @@ public class ClientDTO implements Serializable {
 		type = entity.getType();
 	}
 
-	public ClientDTO(Client entity, List<Address> addresses, List<Order> orders, List<Tellphone> phones) {
+	public ClientDTO(Client entity, Set<Address> addresses) {
 		this(entity);
 		addresses.forEach(address -> this.addresses.add(new AddressDTO(address)));
-		orders.forEach(order -> this.orders.add(new OrderDTO(order)));
-		phones.forEach(phone -> this.phones.add(new TellphoneDTO(phone)));
+		// orders.forEach(order -> this.orders.add(new OrderDTO(order)));
+		// phones.forEach(phone -> this.phones.add(new TellphoneDTO(phone)));
 	}
 
 	public Long getId() {
@@ -92,15 +89,15 @@ public class ClientDTO implements Serializable {
 		this.type = type;
 	}
 
-	public List<AddressDTO> getAddresses() {
+	public Set<AddressDTO> getAddresses() {
 		return addresses;
 	}
 
-	public List<TellphoneDTO> getPhones() {
+	public Set<TellphoneDTO> getPhones() {
 		return phones;
 	}
 
-	public List<OrderDTO> getOrders() {
+	public Set<OrderDTO> getOrders() {
 		return orders;
 	}
 }

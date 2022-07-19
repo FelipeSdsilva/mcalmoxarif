@@ -1,8 +1,12 @@
 package com.maurocenter.almox.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ClienteRepository {
+import com.maurocenter.almox.entities.Client;
 
+@Repository
+public interface ClientRepository extends JpaRepository<Client, Long> {
+
+	
 }
