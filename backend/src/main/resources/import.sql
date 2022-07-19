@@ -1,0 +1,32 @@
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992000317','guaianazes@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992000155','nfedeposito@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992000589','aricanduva@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992000821','saomateus@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992001046','suzano2@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992001470','guarulhos@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992001801','itaim@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992001984','penha@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992001712','mogi@maurocenter.com.br',1);
+INSERT INTO tb_client(name, document, email, type) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992002018','suzano@maurocenter.com.br',1);
+
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Rua Luis Mateus',49,'Guaianazes','São Paulo','SP','08420750');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Rua Luis Mateus',675,'Guaianazes','São Paulo', 'SP','08420750');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Avenida Aricanduva',4800,'Jardim Aricanduva','São Paulo','SP','03490000');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Avenida Ragueb Chofi',3528,'Jardim Três Marias','São Paulo','SP','08341410');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Avenida Francisco Marengo',280,'Jardim Revista','Suzano','SP','08694000');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Estrada Presidente Juscelino Kubitschek de Oliveira',2800,'Parque São Miguel','Guarulhos','SP','07260000');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Avenida Marechal Tito',6490,'Itaim Paulista','São Paulo','SP','08115000');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Avenida São Miguel',3192,'Vila Rio Branco','São Paulo','SP','03870000');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Avenida Francisco Ferreira Lopes',279,'Vila Lavínia','Mogi das Cruzes','SP','08735200');
+INSERT INTO tb_address(name_street, number, district, city, state, cep) VALUES ('Rua Prudente de Moraes',279,'Centro','Suzano','SP','08674015');
+
+INSERT INTO tb_address_client(client_id, address_id) VALUES (1, 1);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (2, 2);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (3, 3);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (4, 4);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (5, 5);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (6, 6);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (7, 7);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (8, 8);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (9, 9);
+INSERT INTO tb_address_client(client_id, address_id) VALUES (10, 10);

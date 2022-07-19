@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.maurocenter.almox.entities.Address;
 import com.maurocenter.almox.entities.Client;
+import com.maurocenter.almox.entities.Order;
+import com.maurocenter.almox.entities.Tellphone;
 import com.maurocenter.almox.entities.enums.ClientType;
+
 
 public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -39,6 +43,13 @@ public class ClientDTO implements Serializable {
 		document = entity.getDocument();
 		email = entity.getEmail();
 		type = entity.getType();
+	}
+
+	public ClientDTO(Client entity, List<Address> addresses, List<Order> orders, List<Tellphone> phones) {
+		this(entity);
+		addresses.forEach(address -> this.addresses.add(new AddressDTO(address)));
+		orders.forEach(order -> this.orders.add(new OrderDTO(order)));
+		phones.forEach(phone -> this.phones.add(new TellphoneDTO(phone)));
 	}
 
 	public Long getId() {

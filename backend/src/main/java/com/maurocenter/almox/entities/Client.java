@@ -32,26 +32,25 @@ public class Client implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "tb_address_client",
 	joinColumns = @JoinColumn(name = "client_id"),
-	inverseJoinColumns = @JoinColumn(name="address_id"))
+	inverseJoinColumns = @JoinColumn(name = "address_id"))
 	private Set<Address> addresses = new HashSet<>();
-	
+
 	@ManyToMany
 	@JoinTable(name = "tb_phone_client",
 	joinColumns = @JoinColumn(name = "client_id"),
-	inverseJoinColumns = @JoinColumn(name="phone_id"))
+	inverseJoinColumns = @JoinColumn(name = "phone_id"))
 	private Set<Tellphone> phones = new HashSet<>();
-	
+
 	@ManyToMany()
 	@JoinTable(name = "tb_order_client",
 	joinColumns = @JoinColumn(name = "client_id"),
-	inverseJoinColumns = @JoinColumn(name="order_id"))
+	inverseJoinColumns = @JoinColumn(name = "order_id"))
 	private Set<Order> orders = new HashSet<>();
-	
+
 	public Client() {
 	}
 
 	public Client(Long id, String name, String document, String email, ClientType type) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.document = document;
@@ -97,6 +96,18 @@ public class Client implements Serializable {
 
 	public void setType(ClientType type) {
 		this.type = type;
+	}
+
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public Set<Tellphone> getPhones() {
+		return phones;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
 	}
 
 	@Override
