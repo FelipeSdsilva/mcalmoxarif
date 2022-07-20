@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.maurocenter.almox.entities.enums.ClientType;
 
 @Entity
@@ -41,10 +43,8 @@ public class Client implements Serializable {
 	inverseJoinColumns = @JoinColumn(name = "phone_id"))
 	private Set<Tellphone> phones = new HashSet<>();
 
-	@ManyToMany()
-	@JoinTable(name = "tb_order_client",
-	joinColumns = @JoinColumn(name = "client_id"),
-	inverseJoinColumns = @JoinColumn(name = "order_id"))
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
 	private Set<Order> orders = new HashSet<>();
 
 	public Client() {
