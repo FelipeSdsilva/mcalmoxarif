@@ -9,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,18 +27,13 @@ public class Client implements Serializable {
 	private String document;
 	private String email;
 	private ClientType type;
-
-	@ManyToMany
-	@JoinTable(name = "tb_address_client",
-	joinColumns = @JoinColumn(name = "client_id"),
-	inverseJoinColumns = @JoinColumn(name = "address_id"))
-	private Set<Address> addresses = new HashSet<>();
-
-	@ManyToMany
-	@JoinTable(name = "tb_phone_client",
-	joinColumns = @JoinColumn(name = "client_id"),
-	inverseJoinColumns = @JoinColumn(name = "phone_id"))
-	private Set<Tellphone> phones = new HashSet<>();
+	private String nameStreet;
+	private Integer number;
+	private String district;
+	private String city;
+	private String state;
+	private String cep;
+	private String phone;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
@@ -50,12 +42,21 @@ public class Client implements Serializable {
 	public Client() {
 	}
 
-	public Client(Long id, String name, String document, String email, ClientType type) {
+	public Client(Long id, String name, String document, String email, ClientType type, String nameStreet,
+			Integer number, String district, String city, String state, String cep, String phone) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.document = document;
 		this.email = email;
 		this.type = type;
+		this.nameStreet = nameStreet;
+		this.number = number;
+		this.district = district;
+		this.city = city;
+		this.state = state;
+		this.cep = cep;
+		this.phone = phone;
 	}
 
 	public Long getId() {
@@ -98,12 +99,60 @@ public class Client implements Serializable {
 		this.type = type;
 	}
 
-	public Set<Address> getAddresses() {
-		return addresses;
+	public String getNameStreet() {
+		return nameStreet;
 	}
 
-	public Set<Tellphone> getPhones() {
-		return phones;
+	public void setNameStreet(String nameStreet) {
+		this.nameStreet = nameStreet;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Set<Order> getOrders() {

@@ -1,17 +1,13 @@
 package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,27 +23,23 @@ public class Provider implements Serializable {
 	private String fantasyName;
 	private String socialRegister;
 	private String email;
+	private String nameStreet;
+	private Integer number;
+	private String district;
+	private String city;
+	private String state;
+	private String cep;
+	private String phone;
 
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	@ManyToMany
-	@JoinTable(name = "tb_address_provider",
-	joinColumns = @JoinColumn(name = "provider_id"),
-	inverseJoinColumns = @JoinColumn(name = "address_id"))
-	private Set<Address> addresses = new HashSet<>();
-
-	@ManyToMany
-	@JoinTable(name = "tb_phone_provider",
-	joinColumns = @JoinColumn(name = "provider_id"),
-	inverseJoinColumns = @JoinColumn(name = "phone_id"))
-	private Set<Tellphone> phones = new HashSet<>();
-
 	public Provider() {
 	}
 
 	public Provider(Long id, String corporateName, String fantasyName, String socialRegister, String email,
+			String nameStreet, Integer number, String district, String city, String state, String cep, String phone,
 			Product product) {
 		super();
 		this.id = id;
@@ -55,6 +47,13 @@ public class Provider implements Serializable {
 		this.fantasyName = fantasyName;
 		this.socialRegister = socialRegister;
 		this.email = email;
+		this.nameStreet = nameStreet;
+		this.number = number;
+		this.district = district;
+		this.city = city;
+		this.state = state;
+		this.cep = cep;
+		this.phone = phone;
 		this.product = product;
 	}
 
@@ -106,12 +105,60 @@ public class Provider implements Serializable {
 		this.product = product;
 	}
 
-	public Set<Address> getAddresses() {
-		return addresses;
+	public String getNameStreet() {
+		return nameStreet;
 	}
 
-	public Set<Tellphone> getPhones() {
-		return phones;
+	public void setNameStreet(String nameStreet) {
+		this.nameStreet = nameStreet;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Override

@@ -17,25 +17,24 @@ import com.maurocenter.almox.dto.ClientDTO;
 import com.maurocenter.almox.services.ClientService;
 
 @RestController
-@RequestMapping(value ="/clients")
+@RequestMapping(value = "/clients")
 public class ClientController {
 
 	@Autowired
 	private ClientService clientService;
-	
+
 	@GetMapping
-	public ResponseEntity<Page<ClientDTO>> findallPaged(Pageable pageable){
+	public ResponseEntity<Page<ClientDTO>> findallPaged(Pageable pageable) {
 		Page<ClientDTO> page = clientService.findAllPaged(pageable);
 		return ResponseEntity.ok().body(page);
 	}
-	
+
 	@PutMapping
-	public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO clientDto){
+	public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO clientDto) {
 		clientDto = clientService.insert(clientDto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				  .buildAndExpand(clientDto.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(clientDto.getId())
+				.toUri();
 		return ResponseEntity.created(uri).body(clientDto);
 	}
-	
-	
+
 }

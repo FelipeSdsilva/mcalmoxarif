@@ -3,8 +3,10 @@ package com.maurocenter.almox.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +31,9 @@ public class Product implements Serializable {
 	private LocalDate dateValidity;
 	private Double price;
 	private TypePacking paking;
+
+	@OneToMany(mappedBy = "id.product")
+	private Set<OrderItem> items = new HashSet<>();
 
 	@OneToMany(mappedBy = "product")
 	private List<Provider> providers = new ArrayList<>();
@@ -93,6 +98,10 @@ public class Product implements Serializable {
 
 	public void setPaking(TypePacking paking) {
 		this.paking = paking;
+	}
+
+	public Set<OrderItem> getItems() {
+		return items;
 	}
 
 	public List<Provider> getProviders() {

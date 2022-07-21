@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.maurocenter.almox.entities.Address;
 import com.maurocenter.almox.entities.Client;
+import com.maurocenter.almox.entities.Order;
 import com.maurocenter.almox.entities.enums.ClientType;
 
 public class ClientDTO implements Serializable {
@@ -16,10 +16,13 @@ public class ClientDTO implements Serializable {
 	private String document;
 	private String email;
 	private ClientType type;
-
-	private Set<AddressDTO> addresses = new HashSet<>();
-
-	private Set<TellphoneDTO> phones = new HashSet<>();
+	private String nameStreet;
+	private Integer number;
+	private String district;
+	private String city;
+	private String state;
+	private String cep;
+	private String phone;
 
 	private Set<OrderDTO> orders = new HashSet<>();
 
@@ -40,13 +43,19 @@ public class ClientDTO implements Serializable {
 		document = entity.getDocument();
 		email = entity.getEmail();
 		type = entity.getType();
+		nameStreet = entity.getNameStreet();
+		number = entity.getNumber();
+		district = entity.getDistrict();
+		city = entity.getCity();
+		state = entity.getState();
+		cep = entity.getCep();
+		phone = entity.getPhone();
+		
 	}
 
-	public ClientDTO(Client entity, Set<Address> addresses) {
+	public ClientDTO(Client entity, Set<Order> orders) {
 		this(entity);
-		addresses.forEach(address -> this.addresses.add(new AddressDTO(address)));
-		// orders.forEach(order -> this.orders.add(new OrderDTO(order)));
-		// phones.forEach(phone -> this.phones.add(new TellphoneDTO(phone)));
+		orders.forEach(order -> this.orders.add(new OrderDTO(order)));
 	}
 
 	public Long getId() {
@@ -89,12 +98,64 @@ public class ClientDTO implements Serializable {
 		this.type = type;
 	}
 
-	public Set<AddressDTO> getAddresses() {
-		return addresses;
+	public String getNameStreet() {
+		return nameStreet;
 	}
 
-	public Set<TellphoneDTO> getPhones() {
-		return phones;
+	public void setNameStreet(String nameStreet) {
+		this.nameStreet = nameStreet;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setOrders(Set<OrderDTO> orders) {
+		this.orders = orders;
 	}
 
 	public Set<OrderDTO> getOrders() {
