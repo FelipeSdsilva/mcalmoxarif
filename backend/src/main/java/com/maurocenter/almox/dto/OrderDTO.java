@@ -71,4 +71,12 @@ public class OrderDTO implements Serializable {
 	public Set<OrderItemDTO> getItems() {
 		return items;
 	}
+	
+	public Double getTotal() {
+		double sum = 0.0;
+		for (OrderItemDTO orderItemDTO : items) {
+			 sum += orderItemDTO.getSubTotal();
+		}
+		return sum;
+	}
 }
