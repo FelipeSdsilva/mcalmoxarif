@@ -19,16 +19,16 @@ public class OrderItemDTO implements Serializable {
 	public OrderItemDTO(OrderDTO orderDto, ProductDTO productDto, Integer quantity, Double price) {
 		id.setProductDto(productDto);
 		id.setOrderDto(orderDto);
-		;
 		this.quantity = quantity;
 		this.price = price;
 	}
 
 	public OrderItemDTO(OrderItem entity) {
-		
+		id.getOrderDto().getId();
+		id.getProductDto().getId();
 		quantity = entity.getQuantity();
 		price = entity.getPrice();
-		
+
 	}
 
 	public OrderDTO getOrderDTO() {

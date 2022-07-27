@@ -26,7 +26,7 @@ public class Client implements Serializable {
 	private String name;
 	private String document;
 	private String email;
-	private ClientType type;
+	private Integer type;
 	private String nameStreet;
 	private Integer number;
 	private String district;
@@ -49,7 +49,7 @@ public class Client implements Serializable {
 		this.name = name;
 		this.document = document;
 		this.email = email;
-		this.type = type;
+		setType(type);
 		this.nameStreet = nameStreet;
 		this.number = number;
 		this.district = district;
@@ -92,11 +92,13 @@ public class Client implements Serializable {
 	}
 
 	public ClientType getType() {
-		return type;
+		return ClientType.valueOf(type);
 	}
 
 	public void setType(ClientType type) {
-		this.type = type;
+		if (type != null) {
+			this.type = type.getCode();
+		}
 	}
 
 	public String getNameStreet() {
