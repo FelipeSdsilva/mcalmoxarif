@@ -14,9 +14,9 @@ public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-
-	private String productName;
+	private String name;
 	private String barcode;
+	private Integer quantityEst;
 	private LocalDate dateValidity;
 	private Double price;
 	private TypePacking paking;
@@ -28,11 +28,12 @@ public class ProductDTO implements Serializable {
 	public ProductDTO() {
 	}
 
-	public ProductDTO(Long id, String productName, String barcode, LocalDate dateValidity, Double price,
+	public ProductDTO(Long id, String name, String barcode, Integer quantityEst, LocalDate dateValidity, Double price,
 			TypePacking paking) {
 		this.id = id;
-		this.productName = productName;
+		this.name = name;
 		this.barcode = barcode;
+		this.quantityEst = quantityEst;
 		this.dateValidity = dateValidity;
 		this.price = price;
 		this.paking = paking;
@@ -40,16 +41,12 @@ public class ProductDTO implements Serializable {
 
 	public ProductDTO(Product entity) {
 		id = entity.getId();
-		productName = entity.getProductName();
+		name = entity.getName();
 		barcode = entity.getBarcode();
+		quantityEst = entity.getQuantityEst();
 		dateValidity = entity.getDateValidity();
 		price = entity.getPrice();
 		paking = entity.getPaking();
-	}
-
-	public ProductDTO(Product entity, Set<OrderItemDTO> items, List<ProviderDTO> providers) {
-		this(entity);
-
 	}
 
 	public Long getId() {
@@ -60,12 +57,12 @@ public class ProductDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getBarcode() {
@@ -74,6 +71,14 @@ public class ProductDTO implements Serializable {
 
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
+	}
+
+	public Integer getQuantityEst() {
+		return quantityEst;
+	}
+
+	public void setQuantityEst(Integer quantityEst) {
+		this.quantityEst = quantityEst;
 	}
 
 	public LocalDate getDateValidity() {
@@ -106,5 +111,13 @@ public class ProductDTO implements Serializable {
 
 	public List<ProviderDTO> getProviders() {
 		return providers;
+	}
+
+	public Set<OrderDTO> getOrders() {
+		Set<OrderDTO> set = new HashSet<>();
+		for (OrderItemDTO order : items) {
+			set.add(order.getOrderDTO());
+		}
+		return set;
 	}
 }

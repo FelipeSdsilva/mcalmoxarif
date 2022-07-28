@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.maurocenter.almox.entities.enums.TypePacking;
 
 @Entity
@@ -27,8 +27,11 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String productName;
+	private String name;
 	private String barcode;
+	private Integer quantityEst;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private LocalDate dateValidity;
 	private Double price;
 	private TypePacking paking;
@@ -42,15 +45,15 @@ public class Product implements Serializable {
 	public Product() {
 	}
 
-	public Product(Long id, String productName, String barcode, LocalDate dateValidity, Double price,
+	public Product(Long id, String name, String barcode, Integer quantityEst, LocalDate dateValidity, Double price,
 			TypePacking paking) {
 		this.id = id;
-		this.productName = productName;
+		this.name = name;
 		this.barcode = barcode;
+		this.quantityEst = quantityEst;
 		this.dateValidity = dateValidity;
 		this.price = price;
 		this.paking = paking;
-
 	}
 
 	public Long getId() {
@@ -61,12 +64,12 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getBarcode() {
@@ -75,6 +78,14 @@ public class Product implements Serializable {
 
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
+	}
+
+	public Integer getQuantityEst() {
+		return quantityEst;
+	}
+
+	public void setQuantityEst(Integer quantityEst) {
+		this.quantityEst = quantityEst;
 	}
 
 	public LocalDate getDateValidity() {
@@ -109,15 +120,6 @@ public class Product implements Serializable {
 		return providers;
 	}
 
-	@JsonIgnore
-	public Set<Order> getOrders(){
-		Set<Order> set = new HashSet<>();
-		for (OrderItem order : items) {
-			set.add(order.getOrder());
-		}
-		return set;
-	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

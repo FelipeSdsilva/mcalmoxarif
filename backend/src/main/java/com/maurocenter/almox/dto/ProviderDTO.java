@@ -56,7 +56,6 @@ public class ProviderDTO implements Serializable {
 		state = entity.getState();
 		cep = entity.getCep();
 		phone = entity.getPhone();
-		entity.getProduct().getId();
 	}
 
 	public Long getId() {
@@ -161,10 +160,6 @@ public class ProviderDTO implements Serializable {
 
 	public void setProduct(ProductDTO product) {
 		this.product = product;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

@@ -5,5 +5,6 @@ public enum TypePacking {
 	UNIDADE,
 	PACOTE,
 	FARDO,
-	CAIXA;
+	CAIXA,
+	SACO;
 }
