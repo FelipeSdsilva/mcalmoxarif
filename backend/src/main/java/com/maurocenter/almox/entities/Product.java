@@ -2,9 +2,7 @@ package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,17 +36,18 @@ public class Product implements Serializable {
 	private Double price;
 	private TypePacking paking;
 
+	@ManyToOne
+	@JoinColumn(name = "provider_id")
+	private Provider provider;
+
 	@OneToMany(mappedBy = "id.product")
 	private Set<OrderItem> items = new HashSet<>();
-
-	@OneToMany(mappedBy = "product")
-	private List<Provider> providers = new ArrayList<>();
 
 	public Product() {
 	}
 
 	public Product(Long id, String name, String barcode, Integer quantityEst, LocalDate dateValidity, Double price,
-			TypePacking paking) {
+			TypePacking paking, Provider provider) {
 		this.id = id;
 		this.name = name;
 		this.barcode = barcode;
@@ -54,6 +55,7 @@ public class Product implements Serializable {
 		this.dateValidity = dateValidity;
 		this.price = price;
 		this.paking = paking;
+		this.provider = provider;
 	}
 
 	public Long getId() {
@@ -112,12 +114,16 @@ public class Product implements Serializable {
 		this.paking = paking;
 	}
 
-	public Set<OrderItem> getItems() {
-		return items;
+	public Provider getProvider() {
+		return provider;
 	}
 
-	public List<Provider> getProviders() {
-		return providers;
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
+	public Set<OrderItem> getItems() {
+		return items;
 	}
 
 	@Override

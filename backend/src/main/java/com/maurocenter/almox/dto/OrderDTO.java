@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.maurocenter.almox.entities.Order;
+import com.maurocenter.almox.entities.OrderItem;
 import com.maurocenter.almox.entities.enums.OrderStatus;
 
 public class OrderDTO implements Serializable {
@@ -23,7 +24,6 @@ public class OrderDTO implements Serializable {
 	}
 
 	public OrderDTO(Long id, LocalDate moment, OrderStatus status, ClientDTO client) {
-		super();
 		this.id = id;
 		this.moment = moment;
 		this.status = status;
@@ -34,6 +34,12 @@ public class OrderDTO implements Serializable {
 		id = entity.getId();
 		moment = entity.getMoment();
 		status = entity.getStatus();
+		client = new ClientDTO(entity.getClient());
+	}
+	
+	public OrderDTO(Order entity, Set<OrderItem> items ) {
+		this(entity);
+		items.forEach(item -> this.items.add(new OrderItemDTO(item)));
 	}
 
 	public Long getId() {

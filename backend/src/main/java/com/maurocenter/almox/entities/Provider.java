@@ -1,14 +1,15 @@
 package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,17 +32,14 @@ public class Provider implements Serializable {
 	private String cep;
 	private String phone;
 
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private Product product;
+	@OneToMany(mappedBy = "provider")
+	private Set<Product> products = new HashSet<>();
 
 	public Provider() {
 	}
 
 	public Provider(Long id, String corporateName, String fantasyName, String socialRegister, String email,
-			String nameStreet, Integer number, String district, String city, String state, String cep, String phone,
-			Product product) {
-		super();
+			String nameStreet, Integer number, String district, String city, String state, String cep, String phone) {
 		this.id = id;
 		this.corporateName = corporateName;
 		this.fantasyName = fantasyName;
@@ -54,7 +52,6 @@ public class Provider implements Serializable {
 		this.state = state;
 		this.cep = cep;
 		this.phone = phone;
-		this.product = product;
 	}
 
 	public Long getId() {
@@ -95,14 +92,6 @@ public class Provider implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
 	}
 
 	public String getNameStreet() {
@@ -159,6 +148,10 @@ public class Provider implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
 	}
 
 	@Override

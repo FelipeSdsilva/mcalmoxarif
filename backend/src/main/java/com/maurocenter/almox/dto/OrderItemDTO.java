@@ -24,8 +24,6 @@ public class OrderItemDTO implements Serializable {
 	}
 
 	public OrderItemDTO(OrderItem entity) {
-		id.getOrderDto().getId();
-		id.getProductDto().getId();
 		quantity = entity.getQuantity();
 		price = entity.getPrice();
 

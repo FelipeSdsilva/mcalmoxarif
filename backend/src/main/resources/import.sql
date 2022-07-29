@@ -9,9 +9,13 @@ INSERT INTO tb_client(name, document, email, type,name_street, number, district,
 INSERT INTO tb_client(name, document, email, type,name_street, number, district, city, state, cep) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992001712','mogi@maurocenter.com.br',2,'Avenida Francisco Ferreira Lopes',279,'Vila Lavínia','Mogi das Cruzes','SP','08735200');
 INSERT INTO tb_client(name, document, email, type,name_street, number, district, city, state, cep) VALUES ('MAURO COMERCIO DE PISOS E CABAMENTOS LTDA','54026992002018','suzano@maurocenter.com.br',2,'Rua Prudente de Moraes',279,'Centro','Suzano','SP','08674015');
 
-INSERT INTO tb_product(name, barcode, quantity_est, date_validity, price, paking) VALUES ('Café' ,'7896089012453',0,'2022-08-14T10:00:00Z',5.55,4);
-
 INSERT INTO tb_provider(corporate_name, fantasy_name, social_register, email, name_street, number, district, city, state, cep, phone) VALUES ('fornecedor teste1','test1','111222555664','teste1@gmail.com','Rua raes',279,'Centro','Suzano','SP','08674015','5511555588');
 INSERT INTO tb_provider(corporate_name, fantasy_name, social_register, email, name_street, number, district, city, state, cep, phone) VALUES ('fornecedor teste2','test2','111222555664','teste2@gmail.com','Rua Prues',9,'Centro','Suzano','SP','08674015','5511555588');
 INSERT INTO tb_provider(corporate_name, fantasy_name, social_register, email, name_street, number, district, city, state, cep, phone) VALUES ('fornecedor teste3','test3','111222555664','teste3@gmail.com','Rua aes',7,'Centro','Suzano','SP','08674015','5511555588');
 INSERT INTO tb_provider(corporate_name, fantasy_name, social_register, email, name_street, number, district, city, state, cep, phone) VALUES ('fornecedor teste4','test4','111222555664','teste4@gmail.com','Rua dente ',79,'Centro','Suzano','SP','08674015','5511555588');
+
+INSERT INTO tb_product(name, barcode, quantity_est, date_validity, price, paking, provider_id) VALUES ('Café' ,'7896089012453',0,'2022-08-14T10:00:00Z',5.55,4, 1);
+
+INSERT INTO tb_order(moment,status,client_id) VALUES (NOW(),2,1);
+
+INSERT INTO tb_order_item(order_id,product_id,quantity,price) VALUES (1,1,2,5.55);

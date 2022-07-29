@@ -1,6 +1,8 @@
 package com.maurocenter.almox.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.maurocenter.almox.entities.Provider;
 
@@ -20,14 +22,13 @@ public class ProviderDTO implements Serializable {
 	private String cep;
 	private String phone;
 
-	private ProductDTO product;
+	private Set<ProductDTO> products = new HashSet<>();
 
 	public ProviderDTO() {
 	}
 
 	public ProviderDTO(Long id, String corporateName, String fantasyName, String socialRegister, String email,
-			String nameStreet, Integer number, String district, String city, String state, String cep, String phone,
-			ProductDTO product) {
+			String nameStreet, Integer number, String district, String city, String state, String cep, String phone) {
 		this.id = id;
 		this.corporateName = corporateName;
 		this.fantasyName = fantasyName;
@@ -40,9 +41,8 @@ public class ProviderDTO implements Serializable {
 		this.state = state;
 		this.cep = cep;
 		this.phone = phone;
-		this.product = product;
 	}
-	
+
 	public ProviderDTO(Provider entity) {
 		id = entity.getId();
 		corporateName = entity.getCorporateName();
@@ -154,12 +154,7 @@ public class ProviderDTO implements Serializable {
 		this.phone = phone;
 	}
 
-	public ProductDTO getProduct() {
-		return product;
+	public Set<ProductDTO> getProducts() {
+		return products;
 	}
-
-	public void setProduct(ProductDTO product) {
-		this.product = product;
-	}
-
 }
