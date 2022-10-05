@@ -10,15 +10,19 @@ public class OrderItemPKDto implements Serializable {
 	
 	private OrderDTO orderDto;
 	private ProductDTO productDto;
+	
 	public OrderDTO getOrderDto() {
 		return orderDto;
 	}
+	
 	public void setOrderDto(OrderDTO orderDto) {
 		this.orderDto = orderDto;
 	}
+	
 	public ProductDTO getProductDto() {
 		return productDto;
 	}
+	
 	public void setProductDto(ProductDTO productDto) {
 		this.productDto = productDto;
 	}

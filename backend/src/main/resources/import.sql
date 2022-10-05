@@ -14,7 +14,7 @@ INSERT INTO tb_provider(corporate_name, fantasy_name, social_register, email, na
 INSERT INTO tb_provider(corporate_name, fantasy_name, social_register, email, name_street, number, district, city, state, cep, phone) VALUES ('fornecedor teste3','test3','111222555664','teste3@gmail.com','Rua aes',7,'Centro','Suzano','SP','08674015','5511555588');
 INSERT INTO tb_provider(corporate_name, fantasy_name, social_register, email, name_street, number, district, city, state, cep, phone) VALUES ('fornecedor teste4','test4','111222555664','teste4@gmail.com','Rua dente ',79,'Centro','Suzano','SP','08674015','5511555588');
 
-INSERT INTO tb_product(name, barcode, quantity_est, date_validity, price, paking, provider_id) VALUES ('Café' ,'7896089012453',0,'2022-08-14T10:00:00Z',5.55,4, 1);
+INSERT INTO tb_product(name, barcode, quantity_est, date_validity, price, paking, provider_id) VALUES ('Café' ,'7896089012453',10,'2022-08-14T10:00:00Z',5.55,4, 1);
 
 INSERT INTO tb_order(moment,status,client_id) VALUES (NOW(),2,1);
 
