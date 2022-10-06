@@ -16,14 +16,14 @@ public class OrderDTO implements Serializable {
 	private LocalDate moment;
 	private OrderStatus status;
 
-	private ClientDTO client;
+	private Long client;
 
 	private Set<OrderItemDTO> items = new HashSet<>();
 
 	public OrderDTO() {
 	}
 
-	public OrderDTO(Long id, LocalDate moment, OrderStatus status, ClientDTO client) {
+	public OrderDTO(Long id, LocalDate moment, OrderStatus status, Long client) {
 		this.id = id;
 		this.moment = moment;
 		this.status = status;
@@ -34,7 +34,7 @@ public class OrderDTO implements Serializable {
 		id = entity.getId();
 		moment = entity.getMoment();
 		status = entity.getStatus();
-		client = new ClientDTO(entity.getClient());
+		client = entity.getClient().getId();
 	}
 	
 	public OrderDTO(Order entity, Set<OrderItem> items ) {
@@ -66,11 +66,11 @@ public class OrderDTO implements Serializable {
 		this.status = status;
 	}
 
-	public ClientDTO getClient() {
+	public Long getClient() {
 		return client;
 	}
 
-	public void setClient(ClientDTO client) {
+	public void setClient(Long client) {
 		this.client = client;
 	}
 
