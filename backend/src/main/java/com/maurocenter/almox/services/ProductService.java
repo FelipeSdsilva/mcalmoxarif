@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.maurocenter.almox.dto.ProductDTO;
 import com.maurocenter.almox.entities.Product;
+import com.maurocenter.almox.entities.Provider;
 import com.maurocenter.almox.repositories.ProductRepository;
 
 @Service
@@ -24,6 +25,7 @@ public class ProductService {
 	public ProductDTO insertProduct(ProductDTO dto) {
 		Product entity = new Product();
 		insertToProduct(dto, entity);
+		entity = repository.save(entity);
 		return new ProductDTO(entity);
 	}
 	
@@ -34,6 +36,11 @@ public class ProductService {
 		entity.setDateValidity(dto.getDateValidity());
 		entity.setPrice(dto.getPrice());
 		entity.setPaking(dto.getPaking());
+		
+		Provider provider = new Provider();
+		
+		provider.setId(dto.getProviderId());
+		entity.setProvider(provider);
 	}
 	
 }
