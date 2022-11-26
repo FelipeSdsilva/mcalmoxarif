@@ -19,29 +19,17 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public Page<ClientDTO> findAllPaged(Pageable pageable) {
 		Page<Client> page = clientRepository.findAll(pageable);
-		return page.map(x -> new ClientDTO(x, x.getOrders()));
+		return page.map(ClientDTO::new);
 	}
 
 	@Transactional
 	public ClientDTO insert(ClientDTO dto) {
 		Client entity = new Client();
-		insertToClient(dto, entity);
+		entity.convertEntityToDto(dto, entity);
 		entity = clientRepository.save(entity);
 		return new ClientDTO(entity);
 	}
 
-	private void insertToClient(ClientDTO dto, Client entity) {
-		entity.setName(dto.getName());
-		entity.setDocument(dto.getDocument());
-		entity.setEmail(dto.getEmail());
-		entity.setType(dto.getType());
-		entity.setNameStreet(dto.getNameStreet());
-		entity.setNumber(dto.getNumber());
-		entity.setDistrict(dto.getDistrict());
-		entity.setCity(dto.getCity());
-		entity.setState(dto.getState());
-		entity.setCep(dto.getCep());
-		entity.setPhone(dto.getPhone());
-	}
+	
 
 }

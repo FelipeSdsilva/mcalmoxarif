@@ -15,29 +15,32 @@ public class OrderDTO implements Serializable {
 	private Long id;
 	private LocalDate moment;
 	private OrderStatus status;
-
-	private ClientDTO client;
+	public Double total;
+	
+	
+	private Long clientId;
 
 	private Set<OrderItemDTO> items = new HashSet<>();
 
 	public OrderDTO() {
 	}
 
-	public OrderDTO(Long id, LocalDate moment, OrderStatus status, ClientDTO client) {
+	public OrderDTO(Long id, LocalDate moment, OrderStatus status, Long clientId) {
 		this.id = id;
 		this.moment = moment;
 		this.status = status;
-		this.client = client;
+		this.clientId = clientId;
 	}
 
 	public OrderDTO(Order entity) {
 		id = entity.getId();
 		moment = entity.getMoment();
 		status = entity.getStatus();
-		client = new ClientDTO(entity.getClient());
+		clientId = entity.getClient().getId();
+		total = entity.getTotal();
 	}
-	
-	public OrderDTO(Order entity, Set<OrderItem> items ) {
+
+	public OrderDTO(Order entity, Set<OrderItem> items) {
 		this(entity);
 		items.forEach(item -> this.items.add(new OrderItemDTO(item)));
 	}
@@ -66,22 +69,22 @@ public class OrderDTO implements Serializable {
 		this.status = status;
 	}
 
-	public ClientDTO getClient() {
-		return client;
+	public Long getClientId() {
+		return clientId;
 	}
 
-	public void setClient(ClientDTO client) {
-		this.client = client;
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
 	}
 
 	public Set<OrderItemDTO> getItems() {
 		return items;
 	}
-	
+
 	public Double getTotal() {
 		double sum = 0.0;
 		for (OrderItemDTO orderItemDTO : items) {
-			 sum += orderItemDTO.getSubTotal();
+			sum += orderItemDTO.getSubTotal();
 		}
 		return sum;
 	}

@@ -1,18 +1,33 @@
 package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.maurocenter.almox.dto.ProviderDTO;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 @Table(name = "tb_provider")
 public class Provider implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,152 +37,26 @@ public class Provider implements Serializable {
 	private Long id;
 	private String corporateName;
 	private String fantasyName;
+
+	@Column(unique = true)
 	private String socialRegister;
+
+	@Column(unique = true)
 	private String email;
-	private String nameStreet;
 	private Integer number;
-	private String district;
-	private String city;
-	private String state;
-	private String cep;
-	private String phone;
+	
+	@ManyToOne
+	private List<Address> adresses = new ArrayList<>();
 
-	@OneToMany(mappedBy = "provider")
+	@ManyToOne
 	private Set<Product> products = new HashSet<>();
-
-	public Provider() {
+	
+	public void convertEntityToDto (ProviderDTO dto, Provider entity) {
+		entity.setCorporateName(dto.getCorporateName());
+		entity.setFantasyName(dto.getFantasyName());
+		entity.setSocialRegister(dto.getSocialRegister());
+		entity.setEmail(dto.getEmail());
+		entity.setNumber(dto.getNumber());
 	}
 
-	public Provider(Long id, String corporateName, String fantasyName, String socialRegister, String email,
-			String nameStreet, Integer number, String district, String city, String state, String cep, String phone) {
-		this.id = id;
-		this.corporateName = corporateName;
-		this.fantasyName = fantasyName;
-		this.socialRegister = socialRegister;
-		this.email = email;
-		this.nameStreet = nameStreet;
-		this.number = number;
-		this.district = district;
-		this.city = city;
-		this.state = state;
-		this.cep = cep;
-		this.phone = phone;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCorporateName() {
-		return corporateName;
-	}
-
-	public void setCorporateName(String corporateName) {
-		this.corporateName = corporateName;
-	}
-
-	public String getFantasyName() {
-		return fantasyName;
-	}
-
-	public void setFantasyName(String fantasyName) {
-		this.fantasyName = fantasyName;
-	}
-
-	public String getSocialRegister() {
-		return socialRegister;
-	}
-
-	public void setSocialRegister(String socialRegister) {
-		this.socialRegister = socialRegister;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getNameStreet() {
-		return nameStreet;
-	}
-
-	public void setNameStreet(String nameStreet) {
-		this.nameStreet = nameStreet;
-	}
-
-	public Integer getNumber() {
-		return number;
-	}
-
-	public void setNumber(Integer number) {
-		this.number = number;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Set<Product> getProducts() {
-		return products;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(fantasyName);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Provider other = (Provider) obj;
-		return Objects.equals(fantasyName, other.fantasyName);
-	}
 }

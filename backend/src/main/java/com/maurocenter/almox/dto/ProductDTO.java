@@ -2,9 +2,7 @@ package com.maurocenter.almox.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.maurocenter.almox.entities.Product;
@@ -20,10 +18,9 @@ public class ProductDTO implements Serializable {
 	private LocalDate dateValidity;
 	private Double price;
 	private TypePacking paking;
+	private Long providerId;
 
 	private Set<OrderItemDTO> items = new HashSet<>();
-
-	private List<ProviderDTO> providers = new ArrayList<>();
 
 	public ProductDTO() {
 	}
@@ -47,6 +44,7 @@ public class ProductDTO implements Serializable {
 		dateValidity = entity.getDateValidity();
 		price = entity.getPrice();
 		paking = entity.getPaking();
+		providerId = entity.getProvider().getId();
 	}
 
 	public Long getId() {
@@ -109,8 +107,12 @@ public class ProductDTO implements Serializable {
 		return items;
 	}
 
-	public List<ProviderDTO> getProviders() {
-		return providers;
+	public Long getProviderId() {
+		return providerId;
+	}
+
+	public void setProviderId(Long providerId) {
+		this.providerId = providerId;
 	}
 
 	public Set<OrderDTO> getOrders() {
