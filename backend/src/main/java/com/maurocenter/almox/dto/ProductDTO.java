@@ -8,6 +8,15 @@ import java.util.Set;
 import com.maurocenter.almox.entities.Product;
 import com.maurocenter.almox.entities.enums.TypePacking;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,20 +31,6 @@ public class ProductDTO implements Serializable {
 
 	private Set<OrderItemDTO> items = new HashSet<>();
 
-	public ProductDTO() {
-	}
-
-	public ProductDTO(Long id, String name, String barcode, Integer quantityEst, LocalDate dateValidity, Double price,
-			TypePacking paking) {
-		this.id = id;
-		this.name = name;
-		this.barcode = barcode;
-		this.quantityEst = quantityEst;
-		this.dateValidity = dateValidity;
-		this.price = price;
-		this.paking = paking;
-	}
-
 	public ProductDTO(Product entity) {
 		id = entity.getId();
 		name = entity.getName();
@@ -47,73 +42,6 @@ public class ProductDTO implements Serializable {
 		providerId = entity.getProvider().getId();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getBarcode() {
-		return barcode;
-	}
-
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
-	}
-
-	public Integer getQuantityEst() {
-		return quantityEst;
-	}
-
-	public void setQuantityEst(Integer quantityEst) {
-		this.quantityEst = quantityEst;
-	}
-
-	public LocalDate getDateValidity() {
-		return dateValidity;
-	}
-
-	public void setDateValidity(LocalDate dateValidity) {
-		this.dateValidity = dateValidity;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public TypePacking getPaking() {
-		return paking;
-	}
-
-	public void setPaking(TypePacking paking) {
-		this.paking = paking;
-	}
-
-	public Set<OrderItemDTO> getItems() {
-		return items;
-	}
-
-	public Long getProviderId() {
-		return providerId;
-	}
-
-	public void setProviderId(Long providerId) {
-		this.providerId = providerId;
-	}
 
 	public Set<OrderDTO> getOrders() {
 		Set<OrderDTO> set = new HashSet<>();

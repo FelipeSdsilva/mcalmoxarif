@@ -40,7 +40,11 @@ public class ProductService {
 		Provider provider = new Provider();
 		
 		provider.setId(dto.getProviderId());
+
         entity.setProvider(provider);
+
+		entity.setProvider(provider);
+
 	}
 	
 }

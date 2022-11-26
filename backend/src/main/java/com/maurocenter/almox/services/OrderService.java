@@ -30,7 +30,7 @@ public class OrderService {
 	}
 
 	@Transactional
-	public OrderDTO insertOrder(OrderDTO dto) {
+	public OrderDTO insertNewOrder(OrderDTO dto) {
 		Order entity = new Order();
 		insertToOrder(dto, entity);
 		entity = ordRepository.save(entity);
@@ -51,4 +51,5 @@ public class OrderService {
 			//OrderItem item = OrderItemRepository.(ordDto.getProductDTO()) 
 		}
 	}
+
 }
