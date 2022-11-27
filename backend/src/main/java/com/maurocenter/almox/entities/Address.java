@@ -6,11 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.maurocenter.almox.dto.AddressDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -37,20 +33,4 @@ public class Address implements Serializable {
 	private String state;
 	private String cep;
 
-	@OneToMany(mappedBy = "adresses")
-	@JoinColumn(name = "client_id")
-	private Client client;
-	
-	@OneToMany(mappedBy = "adresses")
-	@JoinColumn(name = "provider_id")
-	private Provider provider;
-	
-	public void covertEntityInDto(Address entity, AddressDTO dto) {
-		entity.setNameStreet(dto.getNameStreet());;
-	 	entity.setDistrict(dto.getDistrict());;
-		entity.setCity(dto.getCity());;
-	 	entity.setState(dto.getState());;
-	 	entity.setCep(dto.getCep());;
-
-	}
 }
