@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.maurocenter.almox.dto.AddressDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,4 +35,11 @@ public class Address implements Serializable {
 	private String state;
 	private String cep;
 
+	public void convertDtoInEntity(Address entity, AddressDTO adrDto) {
+			entity.setNameStreet(adrDto.getLogradouro());
+			entity.setDistrict(adrDto.getBairro());
+			entity.setCity(adrDto.getLocalidade());
+			entity.setState(adrDto.getUf());
+			entity.setCep(adrDto.getCep());
+	}
 }

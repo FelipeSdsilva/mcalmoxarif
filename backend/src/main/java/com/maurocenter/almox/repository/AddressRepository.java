@@ -8,4 +8,5 @@ import com.maurocenter.almox.entities.Address;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long>{
 
+	Address findByCep(String cep);
 }

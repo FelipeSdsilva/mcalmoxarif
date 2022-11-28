@@ -1,5 +1,7 @@
 package com.maurocenter.almox.dto;
 
+import java.io.Serializable;
+
 import com.maurocenter.almox.entities.Address;
 
 import lombok.AllArgsConstructor;
@@ -11,21 +13,22 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDTO {
+public class AddressDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private String nameStreet;
-	private String district;
-	private String city;
-	private String state;
+	private String logradouro;
+	private String bairro;
+	private String localidade;
+	private String uf;
 	private String cep;
-	
+
 	public AddressDTO(Address entity) {
-	    id = entity.getId();
-		nameStreet = entity.getNameStreet();
-		district = entity.getDistrict();
-		city = entity.getCity();
-		state = entity.getState();
+		id = entity.getId();
+		logradouro = entity.getNameStreet();
+		bairro = entity.getDistrict();
+		localidade = entity.getCity();
+		uf = entity.getState();
 		cep = entity.getCep();
 	}
 }
