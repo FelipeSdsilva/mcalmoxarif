@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.maurocenter.almox.dto.AddressDTO;
 import com.maurocenter.almox.entities.Address;
 import com.maurocenter.almox.repository.AddressRepository;
-import com.maurocenter.almox.repository.IViaCepService;
+import com.maurocenter.almox.repository.IViaCepRepository;
 
 @Service
 public class AddressService {
@@ -18,7 +18,7 @@ public class AddressService {
 	private AddressRepository adrRepository;
 
 	@Autowired
-	private IViaCepService viaCep;
+	private IViaCepRepository viaCep;
 
 	@Transactional(readOnly = true)
 	public List<AddressDTO> listAlladdress() {
@@ -42,8 +42,9 @@ public class AddressService {
 	}
 
 	@Transactional
-	public AddressDTO updateAddress(Long id, AddressDTO adrDto) {
+	public AddressDTO updateAddress(Long id, String cep, AddressDTO adrDto) {
 		Address entity = adrRepository.getReferenceById(id);
+		adrDto = viaCep.consultCep(cep);
 		entity.convertDtoInEntity(entity, adrDto);
 		entity = adrRepository.save(entity);
 		return new AddressDTO(entity);
