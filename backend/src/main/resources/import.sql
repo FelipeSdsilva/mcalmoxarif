@@ -1,10 +1,3 @@
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Rua Luis Mateus','Guaianazes','São Paulo','SP','08420750');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Rua Luis Mateus','Guaianazes','São Paulo', 'SP','08420750');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Avenida Aricanduva','Jardim Aricanduva','São Paulo','SP','03490000');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Avenida Ragueb Chofi','Jardim Três Marias','São Paulo','SP','08341410');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Avenida Francisco Marengo','Jardim Revista','Suzano','SP','08694000');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Estrada Presidente Juscelino Kubitschek de Oliveira','Parque São Miguel','Guarulhos','SP','07260000');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Avenida Marechal Tito','Itaim Paulista','São Paulo','SP','08115000');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Avenida São Miguel','Vila Rio Branco','São Paulo','SP','03870000');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Avenida Francisco Ferreira Lopes','Vila Lavínia','Mogi das Cruzes','SP','08735200');
-INSERT INTO tb_address (name_street, district, city, state, cep) VALUES ('Rua Prudente de Moraes','Centro','Suzano','SP','08674015');
+INSERT INTO tb_client (name, last_Name, email, document, type, number, complement) VALUES ('Mauro','Junior','guainazes@maurocenter.com.br','54026992000317',1,49,'Próximo ao Assai atacadista');
+
+INSERT INTO tb_address (name_street, district, city, state, cep, client_id) VALUES ('Rua Luis Mateus','Guaianazes','São Paulo','SP','08420750',1);

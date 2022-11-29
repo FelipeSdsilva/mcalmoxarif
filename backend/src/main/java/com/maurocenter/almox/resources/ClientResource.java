@@ -46,8 +46,7 @@ public class ClientResource {
 	@PostMapping
 	public ResponseEntity<ClientDTO> insertNewClient(@RequestBody ClientDTO cliDto) {
 		cliDto = cliService.insertNewClient(cliDto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-				.buildAndExpand(cliDto.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(cliDto.getId()).toUri();
 		return ResponseEntity.created(uri).body(cliDto);
 	}
 
@@ -56,9 +55,9 @@ public class ClientResource {
 		cliDto = cliService.updateClient(id, cliDto);
 		return ResponseEntity.ok().body(cliDto);
 	}
-	
+
 	@DeleteMapping(value = "{id}")
-	public ResponseEntity<Void> deleteClient(@PathVariable Long id){
+	public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
 		cliService.deleteClientById(id);
 		return ResponseEntity.noContent().build();
 	}

@@ -2,10 +2,13 @@ package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.maurocenter.almox.dto.AddressDTO;
@@ -33,8 +36,14 @@ public class Address implements Serializable {
 	private String district;
 	private String city;
 	private String state;
+	
+	@Column(unique = true)
 	private String cep;
 
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
+	
 	public void convertDtoInEntity(Address entity, AddressDTO adrDto) {
 			entity.setNameStreet(adrDto.getLogradouro());
 			entity.setDistrict(adrDto.getBairro());

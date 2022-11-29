@@ -1,4 +1,4 @@
-package com.maurocenter.almox.repository.exceptions;
+package com.maurocenter.almox.resources.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;

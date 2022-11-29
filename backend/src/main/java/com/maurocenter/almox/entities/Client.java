@@ -1,12 +1,15 @@
 package com.maurocenter.almox.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.maurocenter.almox.dto.ClientDTO;
@@ -42,6 +45,9 @@ public class Client implements Serializable {
 	private TypeClient type;
 	private Integer number;
 	private String complement;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Address> adresses = new ArrayList<>();
 
 	public void convertDtoToEntity(Client entity, ClientDTO cliDto) {
 		entity.setName(cliDto.getName());;

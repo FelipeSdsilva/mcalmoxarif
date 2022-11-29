@@ -1,6 +1,8 @@
 package com.maurocenter.almox.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.maurocenter.almox.entities.Client;
 import com.maurocenter.almox.entities.enums.TypeClient;
@@ -26,6 +28,8 @@ public class ClientDTO implements Serializable {
 	private Integer number;
 	private String complement;
 	
+	private List<AddressDTO> adresses = new ArrayList<>(); 
+	
 	public ClientDTO(Client entity) {
 		id = entity.getId();
 		name = entity.getName();
@@ -35,6 +39,7 @@ public class ClientDTO implements Serializable {
 		type = entity.getType();
 		number = entity.getNumber();
 		complement = entity.getComplement();
+		entity.getAdresses().forEach(adr -> this.adresses.add(new AddressDTO(adr)));
 	}
 
 }

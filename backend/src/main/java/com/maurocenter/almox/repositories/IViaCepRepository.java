@@ -1,4 +1,4 @@
-package com.maurocenter.almox.repository;
+package com.maurocenter.almox.repositories;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

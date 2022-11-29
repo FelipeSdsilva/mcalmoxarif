@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.maurocenter.almox.dto.ClientDTO;
 import com.maurocenter.almox.entities.Client;
-import com.maurocenter.almox.repository.ClientRepository;
+import com.maurocenter.almox.repositories.ClientRepository;
 
 @Service
 public class ClientService {

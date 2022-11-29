@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.maurocenter.almox.dto.AddressDTO;
 import com.maurocenter.almox.entities.Address;
-import com.maurocenter.almox.repository.AddressRepository;
-import com.maurocenter.almox.repository.IViaCepRepository;
+import com.maurocenter.almox.repositories.AddressRepository;
+import com.maurocenter.almox.repositories.IViaCepRepository;
 
 @Service
 public class AddressService {
