@@ -32,8 +32,16 @@ public class ProviderService {
 	}
 	
 	@Transactional
-	public ProviderDTO insertNewProvider(String cnpj) {
+	public ProviderDTO insertNewProviderWithCnpj(String cnpj) {
 		ProviderDTO provDto = receitaRepository.consultCnpJ(cnpj);
+		Provider entity = new Provider();
+		entity.convertDtoInEntity(entity, provDto);
+		entity = provRepository.save(entity);
+		return new ProviderDTO(entity);
+	}
+	
+	@Transactional
+	public ProviderDTO insertNewProvider(ProviderDTO provDto) {
 		Provider entity = new Provider();
 		entity.convertDtoInEntity(entity, provDto);
 		entity = provRepository.save(entity);
@@ -45,7 +53,7 @@ public class ProviderService {
 		Provider entity = provRepository.getReferenceById(id);
 		entity.convertDtoInEntity(entity, provDto);
 		entity = provRepository.save(entity);
-		return new ProviderDTO();
+		return new ProviderDTO(entity);
 	}
 	
 	public void deleteProvider(Long id) {

@@ -8,7 +8,7 @@ import com.maurocenter.almox.dto.ProviderDTO;
 
 @FeignClient(name = "receitaWs", url = "https://receitaws.com.br/v1/cnpj")
 public interface ReceitaWsRepository {
-	@GetMapping("/{cnpj}/json")
+	@GetMapping("/{cnpj}")
 	ProviderDTO consultCnpJ(@PathVariable("cnpj") String cnpj);
 
 }

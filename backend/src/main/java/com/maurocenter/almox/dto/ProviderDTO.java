@@ -25,14 +25,14 @@ public class ProviderDTO {
 	private String porte;
 	private String situacao;
 	private String natureza_juridica;
-	private Instant abertura;
+	private String abertura;
 	private Instant ultima_atualizacao;
 	private AddressDTO adr;
 	private Integer numero;
 	private String complemento;
 	
 	public ProviderDTO(Provider entity) {
-		id = getId();
+		id = entity.getId();
 		nome = entity.getName();
 		fantasia = entity.getFantasy();
 		email = entity.getEmail();
@@ -44,5 +44,7 @@ public class ProviderDTO {
 		natureza_juridica = entity.getNature_juridique();
 		abertura = entity.getOpening();
 		ultima_atualizacao = entity.getLast_atualization();
+		numero = entity.getNumber();
+		complemento = entity.getComplement();
 	}
 }

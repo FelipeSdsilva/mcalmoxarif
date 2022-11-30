@@ -24,10 +24,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Table(name ="tb_provider")
-public class Provider implements Serializable{
+@Table(name = "tb_provider")
+public class Provider implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -40,13 +40,13 @@ public class Provider implements Serializable{
 	private String carry;
 	private String situation;
 	private String nature_juridique;
-	
-	@Column()
-	private Instant opening;
-	
-	@Column()
+	private String opening;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant last_atualization;
-	
+	private Integer number;
+	private String complement;
+
 	public void convertDtoInEntity(Provider entity, ProviderDTO provDto) {
 		entity.setName(provDto.getNome());
 		entity.setFantasy(provDto.getFantasia());
@@ -59,5 +59,7 @@ public class Provider implements Serializable{
 		entity.setNature_juridique(provDto.getNatureza_juridica());
 		entity.setOpening(provDto.getAbertura());
 		entity.setLast_atualization(provDto.getUltima_atualizacao());
+		entity.setNumber(provDto.getNumero());
+		entity.setComplement(provDto.getComplemento());
 	}
 }
